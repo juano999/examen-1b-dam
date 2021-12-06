@@ -112,4 +112,12 @@ export class ChatService {
     let message = this.afs.collection('messages').doc(id).snapshotChanges();
     console.log('message', message);
   }
+
+  async resetPassword(email: string): Promise<void> {
+    try {
+      return this.afAuth.sendPasswordResetEmail(email);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { ChatService } from 'src/app/services/chat.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,9 @@ import { ChatService } from 'src/app/services/chat.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+  userEmail = new FormControl('');
+  
   credentialForm: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -77,4 +81,13 @@ export class LoginPage implements OnInit {
     return this.credentialForm.get('password');
   }
 
+  async onReset() {
+    try {
+      const email = this.userEmail.value;
+      await this.chatService.resetPassword(email);
+      window.alert('Email sent, check your inbox!');
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
