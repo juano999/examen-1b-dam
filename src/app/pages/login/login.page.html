@@ -26,16 +26,7 @@
   </form>
 
   <ion-button (click)="signIn()" expand="full" color="secondary">Sing in</ion-button>
-  <ion-item>
-    <ion-label> o </ion-label>
-  </ion-item>
   <ion-button routerLink="/register" routerLinkActive="active" expand="full">Sing up</ion-button>
-  <ion-item>
-    <ion-label> Please enter your email </ion-label>
-    <ion-item>
-      <ion-input [formControl]="userEmail"></ion-input>
-    </ion-item>
-  </ion-item>
-  <ion-button (click)="onReset()" expand="full">Recover password</ion-button>
+  <ion-button routerLink="/recuperar" routerLinkActive="active" expand="full">Recover password</ion-button>
 
 </ion-content>
