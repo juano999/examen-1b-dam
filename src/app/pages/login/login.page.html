@@ -1,14 +1,17 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Inicia Sesión</ion-title>
+  <ion-toolbar id="header">
+    <ion-title id="titulos">Inicia Sesión</ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="titulos" fill="clear" routerLink="/recuperar" routerLinkActive="active">¿Has olvidado la contraseña?</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" id="fondo">
 
   <form [formGroup]="credentialForm">
     <ion-item>
-      <ion-input placeholder="Email address" formControlName="email" autofocus="true" clearInput="true"></ion-input>
+      <ion-input placeholder="Correo Electrónico" formControlName="email" autofocus="true" clearInput="true"></ion-input>
     </ion-item>
     <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
       <span *ngIf="email.errors?.required">Email is required</span>
@@ -16,7 +19,7 @@
     </div>
 
     <ion-item>
-      <ion-input placeholder="Password" type="password" formControlName="password" clearInput="true"></ion-input>
+      <ion-input placeholder="Contraseña" type="password" formControlName="password" clearInput="true"></ion-input>
     </ion-item>
     <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
       <span *ngIf="password.errors?.required">Password is required</span>
@@ -25,8 +28,10 @@
 
   </form>
 
-  <ion-button (click)="signIn()" expand="full" color="secondary">Sing in</ion-button>
-  <ion-button routerLink="/register" routerLinkActive="active" expand="full">Sing up</ion-button>
-  <ion-button routerLink="/recuperar" routerLinkActive="active" expand="full">Recover password</ion-button>
-
+  <div class="centrado">
+    <ion-button (click)="signIn()" color="primary" class="centrado"> <strong>Iniciar Sesión</strong> &nbsp; <ion-icon name="home-outline"></ion-icon></ion-button>
+  </div>
+  <div class="centrado">
+    <ion-button id="registro" routerLink="/register" routerLinkActive="active" >Registrarse &nbsp; <ion-icon name="book-outline"></ion-icon></ion-button>
+  </div>
 </ion-content>

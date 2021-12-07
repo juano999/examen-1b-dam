@@ -16,17 +16,33 @@
 }
  
 .my-message {
-    background: var(--ion-color-tertiary);
+    background: var(--ion-color-success-tint);
     color: #fff;
 }
  
 .other-message {
-    background: var(--ion-color-secondary);
-    color: #fff;
+    background: var(--ion-color-danger-contrast);
+    color: #000;
 }
  
 .time {
     color: #dfdfdf;
     float: right;
     font-size: small;
+}
+
+#fondo{
+    --background: #D8DBD5;
+}
+
+#header{
+    --background: #009688;
+}
+
+#titulos{
+    color: #fff;
+}
+
+#salida{
+    --background: #fff;
 }
