@@ -35,7 +35,7 @@ export class RecuperarPage implements OnInit {
     try {
       const email = this.userEmail.value;
       await this.chatService.resetPassword(email);
-      window.alert('Email sent, check your inbox!');
+      window.alert('Correo enviado, revisa tu bandeja de entrada!');     
     } catch (error) {
       console.log(error);
     }
