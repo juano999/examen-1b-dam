@@ -1,14 +1,14 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Registrate Ahora!</ion-title>
+  <ion-toolbar id="header">
+    <ion-title id="titulos">Registrate Ahora!</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" id="fondo">
 
   <form [formGroup]="registerForm">
     <ion-item>
-      <ion-input placeholder="Email address" formControlName="email" autofocus="true" clearInput="true"></ion-input>
+      <ion-input placeholder="Correo Electrónico" formControlName="email" autofocus="true" clearInput="true"></ion-input>
     </ion-item>
     <div *ngIf="(email.dirty || email.touched) && email.errors" class="errors">
       <span *ngIf="email.errors?.required">Email is required</span>
@@ -16,14 +16,14 @@
     </div>
 
     <ion-item>
-      <ion-input placeholder="username" type="username" formControlName="username" clearInput="true"></ion-input>
+      <ion-input placeholder="Usuario" type="username" formControlName="username" clearInput="true"></ion-input>
     </ion-item>
     <div *ngIf="(username.dirty || username.touched) && username.errors" class="errors">
       <span *ngIf="username.errors?.required">username is required</span>
     </div>
 
     <ion-item>
-      <ion-input placeholder="Password" type="password" formControlName="password" clearInput="true"></ion-input>
+      <ion-input placeholder="Contraseña" type="password" formControlName="password" clearInput="true"></ion-input>
     </ion-item>
     <div *ngIf="(password.dirty || password.touched) && password.errors" class="errors">
       <span *ngIf="password.errors?.required">Password is required</span>
@@ -31,8 +31,7 @@
     </div>
 
   </form>
-
-  <ion-button (click)="signUp()" expand="full">Sing up</ion-button>
-
-
+  <div class="centrado">
+    <ion-button id="registro" (click)="signUp()" >Registrarse</ion-button>
+  </div>
 </ion-content>
