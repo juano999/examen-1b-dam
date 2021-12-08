@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 export interface UserAuth {
   uid: string;
@@ -32,7 +34,8 @@ export interface Message {
 export class ChatService {
   currentUser: UserAuth = null;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, 
+    public storage: AngularFireStorage) {
     this.afAuth.onAuthStateChanged(user => {
       console.log('Changed: ', user);
       this.currentUser = user;
@@ -112,6 +115,26 @@ export class ChatService {
     let message = this.afs.collection('messages').doc(id).snapshotChanges();
     console.log('message', message);
   }
+
+
+  uploadFile(file:any, path:string, nombre: string): Promise<string> {
+    return new Promise( resolve=>{
+      const filePath = path + '/' + nombre;
+      const ref = this.storage.ref(filePath);
+      const task = ref.put(file);
+      task.snapshotChanges().pipe(
+        finalize(() =>{
+          ref.getDownloadURL().subscribe( res => {
+            const downloadURL = res;
+            resolve(downloadURL);
+            return;
+          });
+        })
+     )
+    .subscribe();
+    })
+  }
+
 
   async resetPassword(email: string): Promise<void> {
     try {
