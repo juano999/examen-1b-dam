@@ -43,12 +43,17 @@ export class ChatPage implements OnInit {
     const name= event.target.files[0].name;
     const file = event.target.files[0];
     const res = await this.chatService.uploadFile(file, path, name);
-    console.log('recibi', res);
-    this.archives.name = res;
-    this.chatService.addChatMessage(res).then(() => {
+    this.archives = res;
+    this.chatService.addChatMessage(name).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
     });
+  }
+
+  //style="display:none"
+
+  fileShared(){
+    
   }
 
 }
