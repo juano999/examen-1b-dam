@@ -1,3 +1,6 @@
+
+
+
 <ion-header>
   <ion-toolbar id="header">
     <ion-title id="titulos">Grupo 3</ion-title>
@@ -19,6 +22,9 @@
     <b>{{ message.fromName }}</b><br>
     <span>{{ message.msg }}
     </span>
+    <ion-button style="display:none" id="download" (click)="fileShared()">
+      <ion-icon name="cloud-download-outline" slot="icon-only"></ion-icon>
+    </ion-button>
     <div class="time ion-text-right"><br>{{ message.createdAt?.toMillis() | date:'short' }}</div>
 
     </ion-col>
@@ -26,11 +32,17 @@
 </ion-grid>
 </ion-content>
 
-
 <ion-footer>
   <ion-toolbar color="light">
     <ion-row class="ion-align-items-center">
-      <ion-col size="10">
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary"
+          class="file-btn">
+          <ion-input (change)="uploadFile($event)" type="file">
+          </ion-input>
+        </ion-button>
+      </ion-col>
+      <ion-col size="8">
         <ion-textarea autoGrow="true" class="message-input" rows="1" maxLength="500" [(ngModel)]="newMsg" >
         </ion-textarea>
       </ion-col>
