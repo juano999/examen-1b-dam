@@ -13,20 +13,21 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class ChatPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
- 
+
   messages: Observable<Message[]>;
   newMsg = '';
   public archives: any = []
-  
+
   constructor(private chatService: ChatService, private router: Router,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.messages = this.chatService.getChatMessages();
+    // console.log("mess", this.messages)
   }
 
-  sendMessage() {
-    this.chatService.addChatMessage(this.newMsg).then(() => {
+  sendMessage(isFile: boolean) {
+    this.chatService.addChatMessage(this.newMsg, isFile).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
     });
@@ -38,22 +39,21 @@ export class ChatPage implements OnInit {
     });
   }
 
-  async uploadFile(event: any){
+  async uploadFile(event: any) {
     const path = 'Archivos';
-    const name= event.target.files[0].name;
+    const name = event.target.files[0].name;
     const file = event.target.files[0];
     const res = await this.chatService.uploadFile(file, path, name);
     this.archives = res;
-    this.chatService.addChatMessage(name).then(() => {
+    this.chatService.addChatMessage(name, true).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
     });
   }
 
-  //style="display:none"
 
-  fileShared(){
-    
+  fileShared(url: string) {
+    this.chatService.downloadFile(url);
   }
 
 }

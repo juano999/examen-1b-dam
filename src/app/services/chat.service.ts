@@ -25,16 +25,19 @@ export interface Message {
   msg: string;
   fromName: string;
   myMsg: boolean;
+  isFile: boolean;
   myUsername: string;
+  url: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
+  storageName: String
   currentUser: UserAuth = null;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, 
+  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore,
     public storage: AngularFireStorage) {
     this.afAuth.onAuthStateChanged(user => {
       console.log('Changed: ', user);
@@ -68,11 +71,12 @@ export class ChatService {
     return this.afAuth.signOut();
   }
 
-  addChatMessage(msg) {
+  addChatMessage(msg, isFile) {
     return this.afs.collection('messages').add({
       msg,
       from: this.currentUser.uid,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      isFile: isFile
     });
   }
 
@@ -117,22 +121,42 @@ export class ChatService {
   }
 
 
-  uploadFile(file:any, path:string, nombre: string): Promise<string> {
-    return new Promise( resolve=>{
+  uploadFile(file: any, path: string, nombre: string): Promise<string> {
+    return new Promise(resolve => {
       const filePath = path + '/' + nombre;
       const ref = this.storage.ref(filePath);
       const task = ref.put(file);
       task.snapshotChanges().pipe(
-        finalize(() =>{
-          ref.getDownloadURL().subscribe( res => {
+        finalize(() => {
+          ref.getDownloadURL().subscribe(res => {
             const downloadURL = res;
             resolve(downloadURL);
             return;
           });
         })
-     )
-    .subscribe();
+      )
+        .subscribe();
     })
+  }
+
+  downloadFile(nameFile) {
+
+    this.storage.ref(`Archivos/${nameFile}`).getDownloadURL().subscribe(url => {
+      // `url` is the download URL for 'images/stars.jpg'
+
+      // This can be downloaded directly:
+      let xhr = new XMLHttpRequest();
+      xhr.responseType = 'blob';
+      xhr.onload = function (event) {
+        let blob = xhr.response;
+      };
+      xhr.open('GET', url);
+      xhr.send();
+
+      // Or inserted into an <img> element:
+      // var img = document.getElementById('myimg');
+      // img.src = url;
+    });
   }
 
 
