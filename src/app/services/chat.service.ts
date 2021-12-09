@@ -71,12 +71,13 @@ export class ChatService {
     return this.afAuth.signOut();
   }
 
-  addChatMessage(msg, isFile) {
+  addChatMessage(msg, isFile, url) {
     return this.afs.collection('messages').add({
       msg,
       from: this.currentUser.uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      isFile: isFile
+      isFile: isFile,
+      url: url
     });
   }
 
@@ -141,7 +142,7 @@ export class ChatService {
 
   downloadFile(nameFile) {
 
-    this.storage.ref(`Archivos/${nameFile}`).getDownloadURL().subscribe(url => {
+    return this.storage.ref(`Archivos/${nameFile}`).getDownloadURL().subscribe(url => {
       // `url` is the download URL for 'images/stars.jpg'
 
       // This can be downloaded directly:
@@ -150,7 +151,10 @@ export class ChatService {
       xhr.onload = function (event) {
         let blob = xhr.response;
       };
-      xhr.open('GET', url);
+      console.log("resXHR", xhr);
+      console.log("ulr", url);
+
+      xhr.open('GET', url, true);
       xhr.send();
 
       // Or inserted into an <img> element:

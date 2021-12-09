@@ -6,6 +6,7 @@ import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.page.html',
@@ -27,7 +28,7 @@ export class ChatPage implements OnInit {
   }
 
   sendMessage(isFile: boolean) {
-    this.chatService.addChatMessage(this.newMsg, isFile).then(() => {
+    this.chatService.addChatMessage(this.newMsg, isFile, '').then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
     });
@@ -45,7 +46,8 @@ export class ChatPage implements OnInit {
     const file = event.target.files[0];
     const res = await this.chatService.uploadFile(file, path, name);
     this.archives = res;
-    this.chatService.addChatMessage(name, true).then(() => {
+    console.log("resUploadFile", res)
+    this.chatService.addChatMessage(name, true, res).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
     });
@@ -53,7 +55,19 @@ export class ChatPage implements OnInit {
 
 
   fileShared(url: string) {
-    this.chatService.downloadFile(url);
+    var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = function () {
+    //   if (this.readyState == 4 && this.status == 200) {
+    //     document.getElementById("demo").innerHTML = this.responseText;
+    //   }
+    // };
+    xhttp.responseType = 'blob';
+    xhttp.onload = function (event) {
+      var blob = xhttp.response;
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+
   }
 
 }
