@@ -19,9 +19,10 @@
         <b>{{ message.fromName }}</b><br>
         <span>{{ message.msg }}
         </span>
-        <ion-button *ngIf="message.isFile" id="download" (click)="fileShared(message.url)">
+        <ion-button *ngIf="message.isFile" id="download">
           <ion-icon name="cloud-download-outline" slot="icon-only"></ion-icon>
-          <a href="{{message.url}}" target="_blank">Descargar</a>
+
+          <a href="{{message.url}}" target="_blank" style="text-decoration: none; color:#fff" > &nbsp;Descargar</a>
         </ion-button>
 
         <div class="time ion-text-right"><br>{{ message.createdAt?.toMillis() | date:'short' }}</div>
@@ -35,8 +36,8 @@
   <ion-toolbar color="light">
     <ion-row class="ion-align-items-center">
       <ion-col size="2">
-        <ion-button expand="block" fill="clear" color="primary" class="file-btn">
-          <ion-input (change)="uploadFile($event)" type="file">
+        <ion-button expand="block" fill="clear">
+          <ion-input (change)="uploadFile($event)" type="file" id="btn-file">
           </ion-input>
         </ion-button>
       </ion-col>
