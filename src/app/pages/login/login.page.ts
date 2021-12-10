@@ -13,7 +13,7 @@ import { FormControl } from '@angular/forms';
 export class LoginPage implements OnInit {
 
   userEmail = new FormControl('');
-  
+
   credentialForm: FormGroup;
 
   constructor(private fb: FormBuilder,
@@ -29,29 +29,12 @@ export class LoginPage implements OnInit {
     });
   }
 
-  async signUp() {
-    const loading = await this.loadingController.create();
-    await loading.present();
 
-    this.chatService.signUp(this.credentialForm.value).then(user => {
-      loading.dismiss();
-      this.router.navigateByUrl('/chat', { replaceUrl: true });
-    }, async err => {
-      loading.dismiss();
-      const alert = await this.alertController.create({
-        header: 'Sign up failed',
-        message: err.message,
-        buttons: ['OK'],
-      });
-
-      await alert.present();
-    });
-  }
 
   async signIn() {
     const loading = await this.loadingController.create();
     await loading.present();
- 
+
     this.chatService
       .signIn(this.credentialForm.value)
       .then(
@@ -66,17 +49,17 @@ export class LoginPage implements OnInit {
             message: err.message,
             buttons: ['OK'],
           });
- 
+
           await alert.present();
         }
       );
   }
- 
+
   // Easy access for form fields
   get email() {
     return this.credentialForm.get('email');
   }
-  
+
   get password() {
     return this.credentialForm.get('password');
   }

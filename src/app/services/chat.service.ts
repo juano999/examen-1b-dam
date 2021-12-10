@@ -140,28 +140,7 @@ export class ChatService {
     })
   }
 
-  downloadFile(nameFile) {
 
-    return this.storage.ref(`Archivos/${nameFile}`).getDownloadURL().subscribe(url => {
-      // `url` is the download URL for 'images/stars.jpg'
-
-      // This can be downloaded directly:
-      let xhr = new XMLHttpRequest();
-      xhr.responseType = 'blob';
-      xhr.onload = function (event) {
-        let blob = xhr.response;
-      };
-      console.log("resXHR", xhr);
-      console.log("ulr", url);
-
-      xhr.open('GET', url, true);
-      xhr.send();
-
-      // Or inserted into an <img> element:
-      // var img = document.getElementById('myimg');
-      // img.src = url;
-    });
-  }
 
 
   async resetPassword(email: string): Promise<void> {
