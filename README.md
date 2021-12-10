@@ -48,3 +48,6 @@ En el servicio que esta siendo usado por el proyecto se debe generar la función
 
 * Youtube
 https://youtu.be/tqkjV9_tXGM
+
+* Twitter
+https://twitter.com/Jorge71652053/status/1469108181628596226?s=20
