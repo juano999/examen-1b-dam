@@ -140,6 +140,16 @@ export class ChatService {
     })
   }
 
+  async resetPassword(email: string): Promise<void> {
+    try {
+      return this.afAuth.sendPasswordResetEmail(email);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+/*
   downloadFile(nameFile) {
 
     return this.storage.ref(`Archivos/${nameFile}`).getDownloadURL().subscribe(url => {
@@ -162,13 +172,4 @@ export class ChatService {
       // img.src = url;
     });
   }
-
-
-  async resetPassword(email: string): Promise<void> {
-    try {
-      return this.afAuth.sendPasswordResetEmail(email);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-}
+*/

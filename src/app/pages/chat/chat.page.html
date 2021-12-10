@@ -19,7 +19,7 @@
         <b>{{ message.fromName }}</b><br>
         <span>{{ message.msg }}
         </span>
-        <ion-button *ngIf="message.isFile" id="download" (click)="fileShared(message.url)">
+        <ion-button *ngIf="message.isFile" id="download">
           <ion-icon name="cloud-download-outline" slot="icon-only"></ion-icon>
 
           <a href="{{message.url}}" target="_blank" style="text-decoration: none; color:#fff" > &nbsp;Descargar</a>
