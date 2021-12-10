@@ -8,7 +8,7 @@
 
 ## Funcionalidad Juan
 
-## Funcionalidad Jorge
+## Funcionalidad Recuperar contraseña con Firebase
 
 Para implementar la funcionalidad de recuperar contraseña con firebase, se procede a crear un ion-button en el head del html de la pagina principal de login que permitirá la redirección a la página de recueprar contraseña, como se muestra en la siguiente figura:
 
