@@ -7,17 +7,22 @@ import { switchMap, map } from 'rxjs/operators';
 import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 
+
+//Interfaz para la Autenticación de Usuario 
 export interface UserAuth {
   uid: string;
   email: string;
 }
 
+
+//Interfaz para un Usuario en la Base de Datos
 export interface User {
   uid: string;
   username: string;
   email: string;
 }
 
+//Interfaz para un Mensaje
 export interface Message {
   createdAt: firebase.firestore.FieldValue;
   id: string;
@@ -45,6 +50,7 @@ export class ChatService {
     });
   }
 
+  //Registrarse con email, contraseña y nombre de usuario
   async signUp({ email, username, password }) {
     const credential = await this.afAuth.createUserWithEmailAndPassword(
       email,
@@ -63,14 +69,18 @@ export class ChatService {
     });
   }
 
+  //Inicio de Sesión con un email y contraseña
   signIn({ email, password }) {
     return this.afAuth.signInWithEmailAndPassword(email, password);
   }
 
+  //Salir de la sesión
   signOut() {
     return this.afAuth.signOut();
   }
 
+  //Se añade un mensaje a la base de datos de FireStore
+  // con un mensaje, si es o no de tipo "File" y la url en caso de ser de tipo "File"
   addChatMessage(msg, isFile, url) {
     return this.afs.collection('messages').add({
       msg,
@@ -81,6 +91,7 @@ export class ChatService {
     });
   }
 
+  //Se obtiene todos los mensajes desde la base de datos Firestore
   getChatMessages() {
     let users = [];
 
@@ -97,16 +108,18 @@ export class ChatService {
           //m.myUsername = this.afs.collection('users').valueChanges(m.from) as 
         }
         console.log('all messages: ', messages);
-        this.getUsernameForMsg(this.currentUser.uid);
+
         return messages;
       })
     )
   }
 
+  // Se obtiene los usuarios desde la base de Datos de Firestore
   getUsers() {
     return this.afs.collection('users').valueChanges({ idField: 'uid' }) as Observable<User[]>;
   }
 
+  //Se obtiene el nombre de Usuario con el que un usuario se registro
   getUserForMsg(msgFromId, users: User[]): string {
     for (let usr of users) {
       if (usr.uid == msgFromId) {
@@ -116,12 +129,7 @@ export class ChatService {
     return 'Deleted';
   }
 
-  getUsernameForMsg(id) {
-    let message = this.afs.collection('messages').doc(id).snapshotChanges();
-    console.log('message', message);
-  }
-
-
+  //Sube un  archivo al Storage de Firebase
   uploadFile(file: any, path: string, nombre: string): Promise<string> {
     return new Promise(resolve => {
       const filePath = path + '/' + nombre;
@@ -140,9 +148,7 @@ export class ChatService {
     })
   }
 
-
-
-
+  // Realiza el proceso de cambio de Contraseña
   async resetPassword(email: string): Promise<void> {
     try {
       return this.afAuth.sendPasswordResetEmail(email);

@@ -53,16 +53,5 @@ export class ChatPage implements OnInit {
     });
   }
 
-
-  fileShared(url: string) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.responseType = 'blob';
-    xhttp.onload = function (event) {
-      var blob = xhttp.response;
-    };
-    xhttp.open("GET", url, true);
-    xhttp.send();
-
-  }
-
 }
+
