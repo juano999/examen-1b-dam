@@ -28,7 +28,21 @@ En el servicio que esta siendo usado por el proyecto se debe generar la función
 
 ![image](https://user-images.githubusercontent.com/66254573/145498372-386b5e79-309f-428e-9b70-cfbfb86a3c89.png)
 
-## Funcionalidad Berna
+## Funcionalidad de la comparticion de archivos
+
+Para implementar esta funcionalidad tenemos que crear en el archivo chat.page.html dos elementos que son un imput que nos permita capturar el archivo que queramos subir.
+![image](https://user-images.githubusercontent.com/58036212/145499491-40eb4b68-ad96-409c-9653-f27cb195d8f0.png)
+Y un boton que nos permita descargar el archivo una vez que este compartido como mensaje.
+![image](https://user-images.githubusercontent.com/58036212/145499640-7460bdcd-6578-4b69-a59b-3a6e24af7a2f.png)
+
+
+La funcion que se encuentra en el archivo chat.page.ts llamada uploadFile es asincronica y nos permite capturar el archivo que fue cargado y obtener su nombre, la ruta que queramos drle y el archvivo. Luego con lo que el link que nos devuelva la funcion en el servicio la guardaremos en una variable y añadimos los parametros obtenidos en el servicio en addChatMessages para que se suban como mensaje en el formato establecido.
+![image](https://user-images.githubusercontent.com/58036212/145500439-12f8441c-6b98-48f5-8471-d0da86f60a64.png)
+
+
+Por ultimo en el archivo chat.service.ts se encontrara el servicio llamado uploadFile que recibira los parametros del archivo para que este sea subido en el Storage de Firebase en el ruta "Archivos/" y por ultimo la funcion nos devolvera una promesa que sera el link de descarga del archivo.
+![image](https://user-images.githubusercontent.com/58036212/145500490-a05ca14e-ce60-4bdc-9b23-1c2a99831392.png)
+
 
 ## Capturas de ejecución
 
