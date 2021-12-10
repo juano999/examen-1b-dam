@@ -32,6 +32,18 @@ En el servicio que esta siendo usado por el proyecto se debe generar la función
 
 ## Capturas de ejecución
 
+* Pantalla de inicio de sesión
+![Pantalla inicio](https://user-images.githubusercontent.com/58042215/145498670-297cce6f-b8d0-4082-8a7b-2e62e932a494.PNG)
+
+* Pantalla de registro de usuario
+![Registro](https://user-images.githubusercontent.com/58042215/145498706-c4796a11-8769-489f-a2ae-22784a0d2aa2.PNG)
+
+* Pantalla de recuperación de contraseña
+![Pantallla recuperar](https://user-images.githubusercontent.com/58042215/145498713-4ee41b30-2ef6-450c-95d4-dab71a3adacd.PNG)
+
+* Pantalla de chat de usuarios
+![Chat de usuarios](https://user-images.githubusercontent.com/58042215/145498954-ac45134e-2817-4af2-a8c5-9a36bce94176.PNG)
+
 ## Links del video 
 
 * Youtube
