@@ -6,8 +6,38 @@
 * Bernabé Dávila
 * Byron Huaraca
 
-## Funcionalidad Juan
+## Inicialización del Proyecto en Firebase
 
+Para esta aplicación Utilizaremos Firebase, el cual nos facilitara servicios como almacenamiento, base de Datos o Autenticación por correo electronico
+Algo importante de mencionar son las credenciales que nos proporcionará Firebase, las cuales debemos incluirlas en nuestra app.
+
+![image](https://user-images.githubusercontent.com/58042023/145520819-36075fc8-0f58-4de4-bda4-5c35ab4fc47c.png)
+
+
+## Funcionalidad ChatService con FireBase
+
+Utilizaremos las herramnientas como Firestorage y FireAuth para implementar este servicio el cual cual nos permitira: 
+
+#### Registrarnos  
+![image](https://user-images.githubusercontent.com/58042023/145520966-eca91e13-b91b-437c-9baf-df8282f2b578.png)
+
+
+#### Iniciar Sesion  
+![image](https://user-images.githubusercontent.com/58042023/145521009-c8a7be9e-6d65-471e-9503-6711d4798b56.png)
+
+
+#### Salir de la Sesión
+![image](https://user-images.githubusercontent.com/58042023/145521028-49d54b57-d0cf-4f02-b89c-1721b20042eb.png)
+
+
+#### Enviar mensajes al chat
+![image](https://user-images.githubusercontent.com/58042023/145521067-8756f981-cc55-43da-84e1-5a973aff0a4c.png)
+
+
+#### Recibir los Mensajes del Chat
+![image](https://user-images.githubusercontent.com/58042023/145521138-9e024ddc-b97b-4bcc-950b-3d2f596f272c.png)
+
+ 
 ## Funcionalidad Recuperar contraseña con Firebase
 
 Para implementar la funcionalidad de recuperar contraseña con firebase, se procede a crear un ion-button en el head del html de la pagina principal de login que permitirá la redirección a la página de recueprar contraseña, como se muestra en la siguiente figura.
