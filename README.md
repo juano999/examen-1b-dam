@@ -33,6 +33,7 @@ En el servicio que esta siendo usado por el proyecto se debe generar la función
 Para implementar esta funcionalidad tenemos que crear en el archivo chat.page.html dos elementos que son un imput que nos permita capturar el archivo que queramos subir.
 
 ![image](https://user-images.githubusercontent.com/58036212/145499491-40eb4b68-ad96-409c-9653-f27cb195d8f0.png)
+
 Y un boton que nos permita descargar el archivo una vez que este compartido como mensaje.
 
 ![image](https://user-images.githubusercontent.com/58036212/145499640-7460bdcd-6578-4b69-a59b-3a6e24af7a2f.png)
