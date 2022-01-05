@@ -40,6 +40,13 @@
           <ion-input (change)="uploadFile($event)" type="file" id="btn-file">
           </ion-input>
         </ion-button>
+        <ion-button size="small" (click)="getCurrentCoordinate()">
+          Ubicación actual
+        </ion-button>
+        <div>
+            Lat: {{coordinate?.latitude }}
+            Long:{{ coordinate?.longitude }}
+        </div>
       </ion-col>
       <ion-col size="8">
         <ion-textarea autoGrow="true" class="message-input" rows="1" maxLength="500" [(ngModel)]="newMsg">

@@ -29,8 +29,6 @@ export class LoginPage implements OnInit {
     });
   }
 
-
-
   async signIn() {
     const loading = await this.loadingController.create();
     await loading.present();

@@ -1,10 +1,12 @@
 import { Message } from './../../services/chat.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
+import  { CallbackID, Capacitor } from '@capacitor/core';
+import { Geolocation } from '@capacitor/core';
 
 
 @Component({
@@ -15,12 +17,17 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class ChatPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
 
+  coordinate: any;
+  watchCoordinate: any;
+  watchId: any;
+
   messages: Observable<Message[]>;
   newMsg = '';
   public archives: any = []
 
-  constructor(private chatService: ChatService, private router: Router,
-  ) { }
+  constructor(private chatService: ChatService, 
+    private router: Router,
+    private zone: NgZone) { }
 
   ngOnInit() {
     this.messages = this.chatService.getChatMessages();
@@ -50,6 +57,28 @@ export class ChatPage implements OnInit {
     this.chatService.addChatMessage(name, true, res).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
+    });
+  }
+
+  async requestPermissions() {
+    const permResult = await Geolocation.requestPermissions();
+    console.log('Perm request result: ', permResult);
+  }
+
+  getCurrentCoordinate() {
+    if (!Capacitor.isPluginAvailable('Geolocation')) {
+      console.log('Plugin geolocation not available');
+      return;
+    }
+  
+    Geolocation.getCurrentPosition().then(data => {
+      this.coordinate.addChatMessage = {
+        latitude: data.coords.latitude,
+        longitude: data.coords.longitude,
+        accuracy: data.coords.accuracy
+      };
+    }).catch(err => {
+      console.error(err);
     });
   }
 
