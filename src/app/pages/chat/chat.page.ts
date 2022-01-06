@@ -66,21 +66,36 @@ export class ChatPage implements OnInit {
   }
 
   getCurrentCoordinate() {
+    let result
     if (!Capacitor.isPluginAvailable('Geolocation')) {
       console.log('Plugin geolocation not available');
       return;
     }
-  
     Geolocation.getCurrentPosition().then(data => {
-      this.coordinate.addChatMessage = {
+      this.coordinate = {
         latitude: data.coords.latitude,
         longitude: data.coords.longitude,
         accuracy: data.coords.accuracy
       };
+       result = "Mi ubicacion es: " + "Lat: " + data.coords.latitude + " " + "Long: " + data.coords.longitude 
+       console.log(result)
+
+       this.chatService.addChatMessage(result, false, '').then(() => {
+            this.newMsg = '';
+            this.content.scrollToBottom();
+          });
     }).catch(err => {
       console.error(err);
-    });
+    });    
   }
+
+  // sendLocation() {  
+
+  //   this.chatService.addChatMessage(position, false, '').then(() => {
+  //     this.newMsg = '';
+  //     this.content.scrollToBottom();
+  //   });
+  // }
 
 }
 
