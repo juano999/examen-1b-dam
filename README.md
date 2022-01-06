@@ -90,6 +90,17 @@ Por ultimo en el archivo chat.service.ts se encontrara el servicio llamado uploa
 ![image](https://user-images.githubusercontent.com/58036212/145500490-a05ca14e-ce60-4bdc-9b23-1c2a99831392.png)
 
 
+## Funcionalidad de envío de ubicación
+
+Para realizar esta funcionalidad se deben usar el plugin de geolocation de capacitor, para lo cual se procede a instalar dicho plugin para posteriormente generar dentro del boton desplegable correspondiente y la funcionalidad en el .ts de la página de Chat como se muestra en la siguiente figura.
+
+### Archivo .ts de la página de Chat
+
+Para la funcionalidad se genera una funcion que recepte la ubicación actual del usuario y por medio del servicio de envío de mesnajes se genera un string con dicha ubicación la cual es el parametro que recibe la función que envia el mensaje a la base de datos y lo muestra en el chat.
+
+![image](https://user-images.githubusercontent.com/66254573/148399084-8277ed13-fe38-4a4f-a3f1-9a7b5f41d456.png)
+
+
 ## Capturas de ejecución
 
 * Pantalla de inicio de sesión
@@ -104,8 +115,10 @@ Por ultimo en el archivo chat.service.ts se encontrara el servicio llamado uploa
 * Pantalla de chat de usuarios
 ![Chat de usuarios](https://user-images.githubusercontent.com/58042215/145498954-ac45134e-2817-4af2-a8c5-9a36bce94176.PNG)
 
-## Funcionalidad de envio de ubicación
 
-Para realizar esta funcionalidad se deben usar el plugin de geolocation de capacitor, para lo cual se procede a instalar dicho plugin para posteriormente generar dentro del boton desplegable correspondiente y la funcionalidad en el .ts de la pagina de Chat como se muestra en la siguiente figura.
+
+
+
+
 
 
