@@ -116,7 +116,8 @@ Para la funcionalidad se genera una funcion que recepte la ubicación actual del
 ![Chat de usuarios](https://user-images.githubusercontent.com/58042215/145498954-ac45134e-2817-4af2-a8c5-9a36bce94176.PNG)
 
 * Envío de ubicación actual
- 
+![image](https://user-images.githubusercontent.com/66254573/148399650-a5263937-6532-4210-ac7e-684117e2b39e.png)
+
 
 
 
