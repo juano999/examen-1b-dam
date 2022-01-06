@@ -58,7 +58,14 @@ En el servicio que esta siendo usado por el proyecto se debe generar la función
 
 ![image](https://user-images.githubusercontent.com/66254573/145498372-386b5e79-309f-428e-9b70-cfbfb86a3c89.png)
 
-## Funcionalidad de la comparticion de archivos
+## Implementación de botón desplegable
+
+Con el motivo de mejorar la visualización de la aplicación se realizo la implementación de un botón en la esquina inferior izquierda el cual al pulsarlo despligue otros botones; entre los cuales se encuentran el botón de envio de archivos, el botón que envia la ubicación actual y por ulrimo, el bot+on que permite tomar y enviar imagenes como se muestra en la siguiente figura.
+
+![image](https://user-images.githubusercontent.com/66254573/148398456-2bbef60d-e5ca-4dbe-a9e5-c03f799eaea0.png)
+
+
+## Funcionalidad de la compartición de archivos
 
 Para implementar esta funcionalidad tenemos que crear en el archivo chat.page.html dos elementos que son un imput que nos permita capturar el archivo que queramos subir.
 
@@ -93,13 +100,8 @@ Por ultimo en el archivo chat.service.ts se encontrara el servicio llamado uploa
 * Pantalla de chat de usuarios
 ![Chat de usuarios](https://user-images.githubusercontent.com/58042215/145498954-ac45134e-2817-4af2-a8c5-9a36bce94176.PNG)
 
-## Links del video 
+## Funcionalidad de envio de ubicación
 
-* Youtube
-https://youtu.be/tqkjV9_tXGM
+Para realizar esta funcionalidad se deben usar el plugin de geolocation de capacitor, para lo cual se procede a instalar dicho plugin para posteriormente generar dentro del boton desplegable correspondiente y la funcionalidad en el .ts de la pagina de Chat como se muestra en la siguiente figura.
 
-* Twitter
-https://twitter.com/Jorge71652053/status/1469108181628596226?s=20
 
-* Facebook
-https://www.facebook.com/100003773457594/posts/2348226068646485/?sfnsn=mo
