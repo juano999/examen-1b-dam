@@ -1,13 +1,16 @@
 import { Message } from './../../services/chat.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { ActionSheetController } from '@ionic/angular';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { UserPhoto, PhotoService } from '../../services/photo.service';
-
+import  { CallbackID, Capacitor } from '@capacitor/core';
+import { Geolocation } from '@capacitor/core';
+import { PhotoService } from '../../services/photo.service';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+const { Camera } = Plugins;
 
 @Component({
   selector: 'app-chat',
@@ -17,17 +20,23 @@ import { UserPhoto, PhotoService } from '../../services/photo.service';
 export class ChatPage implements OnInit {
   @ViewChild(IonContent) content: IonContent;
 
+  coordinate: any;
+  watchCoordinate: any;
+  watchId: any;
+
   messages: Observable<Message[]>;
   newMsg = '';
   public archives: any = []
+  photos: SafeResourceUrl[] = [] as SafeResourceUrl[];
 
-  constructor(private chatService: ChatService, private router: Router,
-    public photoService: PhotoService, public actionSheetController: ActionSheetController
-  ) { }
+  constructor(private chatService: ChatService,
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private zone: NgZone) { }
 
   ngOnInit() {
     this.messages = this.chatService.getChatMessages();
-    this.photoService.loadSaved();
+    // console.log("mess", this.messages)
   }
 
   sendMessage(isFile: boolean) {
@@ -56,27 +65,53 @@ export class ChatPage implements OnInit {
     });
   }
 
-  public async showActionSheet(photo: UserPhoto, position: number) {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Photos',
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          this.photoService.deletePicture(photo, position);
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          // Nothing to do, action sheet is automatically closed
-         }
-      }]
-    });
-    await actionSheet.present();
+  async requestPermissions() {
+    const permResult = await Geolocation.requestPermissions();
+    console.log('Perm request result: ', permResult);
   }
+
+  getCurrentCoordinate() {
+    let result
+    if (!Capacitor.isPluginAvailable('Geolocation')) {
+      console.log('Plugin geolocation not available');
+      return;
+    }
+    Geolocation.getCurrentPosition().then(data => {
+      this.coordinate = {
+        latitude: data.coords.latitude,
+        longitude: data.coords.longitude,
+        accuracy: data.coords.accuracy
+      };
+       result = "Mi ubicacion es: " + "Lat: " + data.coords.latitude + " " + "Long: " + data.coords.longitude 
+       console.log(result)
+
+       this.chatService.addChatMessage(result, false, '').then(() => {
+            this.newMsg = '';
+            this.content.scrollToBottom();
+          });
+    }).catch(err => {
+      console.error(err);
+    });    
+  }
+
+  async takePicture() {
+    const image = await Plugins.Camera.getPhoto({
+      resultType: CameraResultType.DataUrl, // file-based data; provides best performance
+      source: CameraSource.Camera, // automatically take a new photo with the camera
+      quality: 100, 
+      allowEditing: false,
+    });
+
+    this.photos.push(this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl)));
+  }
+
+  // sendLocation() {  
+
+  //   this.chatService.addChatMessage(position, false, '').then(() => {
+  //     this.newMsg = '';
+  //     this.content.scrollToBottom();
+  //   });
+  // }
 
 }
 

@@ -22,7 +22,7 @@
         <ion-button *ngIf="message.isFile" id="download">
           <ion-icon name="cloud-download-outline" slot="icon-only"></ion-icon>
 
-          <a href="{{message.url}}" target="_blank" style="text-decoration: none; color:#fff" > &nbsp;Descargar</a>
+          <a href="{{message.url}}" target="_blank" style="text-decoration: none; color:#fff"> &nbsp;Descargar</a>
         </ion-button>
 
         <div class="time ion-text-right"><br>{{ message.createdAt?.toMillis() | date:'short' }}</div>
@@ -30,15 +30,54 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab class="fab-button" horizontal="start" vertical="bottom" slot="fixed">
+    <ion-fab-button class="main-fab-button" color="dark">
+      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+
+      <ion-fab-button color="light">
+        <ion-icon name="document-attach-outline">
+        </ion-icon>
+        <ion-input (change)="uploadFile($event)" type="file" id="btn-file">
+        </ion-input>
+      </ion-fab-button>
+
+      <ion-fab-button color="light" (click)="takePicture()">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-fab-button color="light" (click)="getCurrentCoordinate()">
+        <ion-icon name="location-outline"></ion-icon>
+      </ion-fab-button>
+
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar color="light">
     <ion-row class="ion-align-items-center">
       <ion-col size="2">
-        <ion-fab-button (click)="photoService.addNewToGallery()">
-          <ion-icon name="camera"></ion-icon>
-        </ion-fab-button>
+        <!-- <ion-button expand="block" fill="clear">
+          <ion-input (change)="uploadFile($event)" type="file" id="btn-file">
+          </ion-input>
+        </ion-button> -->
+
+      <!-- </ion-button>
+      <ion-button size="small" (click)="getCurrentCoordinate()">
+        Ubicación actual
+      </ion-button>
+        <div>
+            Lat: {{coordinate?.latitude }}
+            Long:{{ coordinate?.longitude }}
+        </div>
+      </ion-button> -->
+
+      <!--
+        <img *ngFor= "let photo of photos" [src]="photo" >
+      -->
+
       </ion-col>
       <ion-col size="8">
         <ion-textarea autoGrow="true" class="message-input" rows="1" maxLength="500" [(ngModel)]="newMsg">
