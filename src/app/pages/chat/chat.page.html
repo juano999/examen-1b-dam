@@ -36,10 +36,9 @@
   <ion-toolbar color="light">
     <ion-row class="ion-align-items-center">
       <ion-col size="2">
-        <ion-button expand="block" fill="clear">
-          <ion-input (change)="uploadFile($event)" type="file" id="btn-file">
-          </ion-input>
-        </ion-button>
+        <ion-fab-button (click)="photoService.addNewToGallery()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
       </ion-col>
       <ion-col size="8">
         <ion-textarea autoGrow="true" class="message-input" rows="1" maxLength="500" [(ngModel)]="newMsg">

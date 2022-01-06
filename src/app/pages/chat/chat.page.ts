@@ -4,7 +4,9 @@ import { ChatService } from '../../services/chat.service';
 import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { ActionSheetController } from '@ionic/angular';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { UserPhoto, PhotoService } from '../../services/photo.service';
 
 
 @Component({
@@ -20,11 +22,12 @@ export class ChatPage implements OnInit {
   public archives: any = []
 
   constructor(private chatService: ChatService, private router: Router,
+    public photoService: PhotoService, public actionSheetController: ActionSheetController
   ) { }
 
   ngOnInit() {
     this.messages = this.chatService.getChatMessages();
-    // console.log("mess", this.messages)
+    this.photoService.loadSaved();
   }
 
   sendMessage(isFile: boolean) {
@@ -51,6 +54,28 @@ export class ChatPage implements OnInit {
       this.newMsg = '';
       this.content.scrollToBottom();
     });
+  }
+
+  public async showActionSheet(photo: UserPhoto, position: number) {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Photos',
+      buttons: [{
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          this.photoService.deletePicture(photo, position);
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          // Nothing to do, action sheet is automatically closed
+         }
+      }]
+    });
+    await actionSheet.present();
   }
 
 }
