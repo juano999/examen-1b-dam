@@ -1,4 +1,4 @@
-## Prueba Desarrollo de Aplicaciones Móviles
+## Examen 1B Desarrollo de Aplicaciones Móviles
 
 # Integrantes
 * Jorge Alba
