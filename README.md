@@ -60,7 +60,11 @@ En el servicio que esta siendo usado por el proyecto se debe generar la función
 
 ## Implementación de botón desplegable
 
-Con el motivo de mejorar la visualización de la aplicación se realizo la implementación de un botón en la esquina inferior izquierda el cual al pulsarlo despligue otros botones; entre los cuales se encuentran el botón de envio de archivos, el botón que envia la ubicación actual y por ulrimo, el bot+on que permite tomar y enviar imagenes como se muestra en la siguiente figura.
+Con el motivo de mejorar la visualización de la aplicación se realizo la implementación de un botón en la esquina inferior izquierda cuyo código se lo muestra en la siguiente figura.
+
+![image](https://user-images.githubusercontent.com/66254573/148398748-2e3c3f71-4f2d-4067-b9c7-f5f22c3fb451.png)
+
+El cual al pulsarlo despliguará otros botones; entre los cuales se encuentran el botón de envio de archivos, el botón que envia la ubicación actual y por último, el bot+on que permite capturar y enviar imagenes como se muestra en la siguiente figura.
 
 ![image](https://user-images.githubusercontent.com/66254573/148398456-2bbef60d-e5ca-4dbe-a9e5-c03f799eaea0.png)
 
