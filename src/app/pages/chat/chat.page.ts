@@ -5,11 +5,13 @@ import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-import  { CallbackID, Capacitor } from '@capacitor/core';
+import  { CallbackID, CameraOptions, CameraPluginWeb, Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/core';
 import { PhotoService } from '../../services/photo.service';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { NavController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+import { storage } from 'firebase';
 const { Camera } = Plugins;
 
 @Component({
@@ -32,6 +34,7 @@ export class ChatPage implements OnInit {
   constructor(private chatService: ChatService,
     private sanitizer: DomSanitizer,
     private router: Router,
+    public navCtrl: NavController,
     private zone: NgZone) { }
 
   ngOnInit() {
@@ -94,16 +97,29 @@ export class ChatPage implements OnInit {
     });    
   }
 
-  async takePicture() {
-    const image = await Plugins.Camera.getPhoto({
-      resultType: CameraResultType.DataUrl, // file-based data; provides best performance
-      source: CameraSource.Camera, // automatically take a new photo with the camera
-      quality: 100, 
-      allowEditing: false,
-    });
+  random(min, max) {
+    return Math.floor((Math.random() * (max - min + 1)) + min);
+}
 
-    this.photos.push(this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl)));
+  async takePicture() {
+    
+    const options: CameraOptions = {
+      quality: 50,
+      resultType: CameraResultType.DataUrl, 
+      source: CameraSource.Camera,
+    }
+
+    const result = await Plugins.Camera.getPhoto(options);
+
+    var aleatorio = this.random(1, 100000);
+
+    const pictures = storage().ref('Fotos/name'+ aleatorio);
+    const url = pictures.putString(result.dataUrl, 'data_url');
+    
+    console.log("foto", url);
   }
+
+  
 
   // sendLocation() {  
 
