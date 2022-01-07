@@ -5,9 +5,20 @@ import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
+<<<<<<< HEAD
+import  { CallbackID, CameraOptions, CameraPluginWeb, Capacitor } from '@capacitor/core';
+import { Geolocation } from '@capacitor/core';
+import { PhotoService } from '../../services/photo.service';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { NavController } from '@ionic/angular';
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+import { storage } from 'firebase';
+const { Camera } = Plugins;
+=======
 import  { CallbackID, Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/core';
 
+>>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
 
 @Component({
   selector: 'app-chat',
@@ -24,9 +35,17 @@ export class ChatPage implements OnInit {
   messages: Observable<Message[]>;
   newMsg = '';
   public archives: any = []
+  photos: SafeResourceUrl[] = [] as SafeResourceUrl[];
 
+<<<<<<< HEAD
+  constructor(private chatService: ChatService,
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    public navCtrl: NavController,
+=======
   constructor(private chatService: ChatService, 
     private router: Router,
+>>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
     private zone: NgZone) { }
 
   ngOnInit() {
@@ -89,6 +108,33 @@ export class ChatPage implements OnInit {
     });    
   }
 
+<<<<<<< HEAD
+  random(min, max) {
+    return Math.floor((Math.random() * (max - min + 1)) + min);
+}
+
+  async takePicture() {
+    
+    const options: CameraOptions = {
+      quality: 50,
+      resultType: CameraResultType.DataUrl, 
+      source: CameraSource.Camera,
+    }
+
+    const result = await Plugins.Camera.getPhoto(options);
+
+    var aleatorio = this.random(1, 100000);
+
+    const pictures = storage().ref('Fotos/name'+ aleatorio);
+    const url = pictures.putString(result.dataUrl, 'data_url');
+    
+    console.log("foto", url);
+  }
+
+  
+
+=======
+>>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
   // sendLocation() {  
 
   //   this.chatService.addChatMessage(position, false, '').then(() => {
