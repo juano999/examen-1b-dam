@@ -8,7 +8,7 @@
 
 ## Inicialización del Proyecto en Firebase
 
-Para esta aplicación Utilizaremos Firebase, el cual nos facilitara servicios como almacenamiento, base de Datos o Autenticación por correo electronico
+Para esta aplicación Utilizaremos Firebase, el cual nos facilitará servicios como almacenamiento, base de datos o autenticación por correo electrónico
 Algo importante de mencionar son las credenciales que nos proporcionará Firebase, las cuales debemos incluirlas en nuestra app.
 
 ![image](https://user-images.githubusercontent.com/58042023/145520819-36075fc8-0f58-4de4-bda4-5c35ab4fc47c.png)
@@ -22,7 +22,7 @@ Utilizaremos las herramnientas como Firestorage y FireAuth para implementar este
 ![image](https://user-images.githubusercontent.com/58042023/145520966-eca91e13-b91b-437c-9baf-df8282f2b578.png)
 
 
-#### Iniciar Sesion  
+#### Iniciar Sesión  
 ![image](https://user-images.githubusercontent.com/58042023/145521009-c8a7be9e-6d65-471e-9503-6711d4798b56.png)
 
 
@@ -40,7 +40,7 @@ Utilizaremos las herramnientas como Firestorage y FireAuth para implementar este
  
 ## Funcionalidad Recuperar contraseña con Firebase
 
-Para implementar la funcionalidad de recuperar contraseña con firebase, se procede a crear un ion-button en el head del html de la pagina principal de login que permitirá la redirección a la página de recueprar contraseña, como se muestra en la siguiente figura.
+Para implementar la funcionalidad de recuperar contraseña con firebase, se procede a crear un ion-button en el head del html de la página principal de login que permitirá la redirección a la página de recueprar contraseña, como se muestra en la siguiente figura.
 
 ![image](https://user-images.githubusercontent.com/66254573/145497602-e9efe9f8-76aa-4e4e-8ebe-4000d23c17a6.png)
 
@@ -49,7 +49,7 @@ Dentro del html de la página de recuperar contraseña, destaca in ion-input el 
 ![image](https://user-images.githubusercontent.com/66254573/145497671-0c93a960-f85f-443b-8f03-278d1016f05d.png)
 
 
-Dentro del .ts de la página recuerar se debe codificar la funcionalidad que capture el correo ingresado y también altere al usuario de que dicho correo fue enviado y que revise su bandeja de su correo como se visualiza en la siguiente figura.
+Dentro del .ts de la página recuerar se debe codificar la funcionalidad que capture el correo ingresado y también alerte al usuario de que dicho correo fue enviado y que revise su bandeja de su correo como se visualiza en la siguiente figura.
 
 ![image](https://user-images.githubusercontent.com/66254573/145498213-f7000fb7-a62b-4d3a-8d01-f59d324eec32.png)
 
@@ -64,7 +64,7 @@ Con el motivo de mejorar la visualización de la aplicación se realizo la imple
 
 ![image](https://user-images.githubusercontent.com/66254573/148398748-2e3c3f71-4f2d-4067-b9c7-f5f22c3fb451.png)
 
-El cual al pulsarlo despliguará otros botones; entre los cuales se encuentran el botón de envio de archivos, el botón que envia la ubicación actual y por último, el bot+on que permite capturar y enviar imagenes como se muestra en la siguiente figura.
+El cual al pulsarlo despliguará otros botones; entre los cuales se encuentran el botón de envio de archivos, el botón que envia la ubicación actual y por último, el botón que permite capturar y enviar imagenes como se muestra en la siguiente figura.
 
 ![image](https://user-images.githubusercontent.com/66254573/148398456-2bbef60d-e5ca-4dbe-a9e5-c03f799eaea0.png)
 
@@ -75,28 +75,28 @@ Para implementar esta funcionalidad tenemos que crear en el archivo chat.page.ht
 
 ![image](https://user-images.githubusercontent.com/58036212/145499491-40eb4b68-ad96-409c-9653-f27cb195d8f0.png)
 
-Y un boton que nos permita descargar el archivo una vez que este compartido como mensaje.
+Y un botón que nos permita descargar el archivo una vez que este compartido como mensaje.
 
 ![image](https://user-images.githubusercontent.com/58036212/145499640-7460bdcd-6578-4b69-a59b-3a6e24af7a2f.png)
 
 
-La funcion que se encuentra en el archivo chat.page.ts llamada uploadFile es asincronica y nos permite capturar el archivo que fue cargado y obtener su nombre, la ruta que queramos drle y el archvivo. Luego con lo que el link que nos devuelva la funcion en el servicio la guardaremos en una variable y añadimos los parametros obtenidos en el servicio en addChatMessages para que se suban como mensaje en el formato establecido.
+La función que se encuentra en el archivo chat.page.ts llamada uploadFile es asincronica y nos permite capturar el archivo que fue cargado y obtener su nombre, la ruta que queramos darle y el archvivo. Luego con lo que el link que nos devuelva la funcion en el servicio la guardaremos en una variable y añadimos los parametros obtenidos en el servicio en addChatMessages para que se suban como mensaje en el formato establecido.
 
 ![image](https://user-images.githubusercontent.com/58036212/145500439-12f8441c-6b98-48f5-8471-d0da86f60a64.png)
 
 
-Por ultimo en el archivo chat.service.ts se encontrara el servicio llamado uploadFile que recibira los parametros del archivo para que este sea subido en el Storage de Firebase en el ruta "Archivos/" y por ultimo la funcion nos devolvera una promesa que sera el link de descarga del archivo.
+Por último, en el archivo chat.service.ts se encontrara el servicio llamado uploadFile que recibira los parametros del archivo para que este sea subido en el Storage de Firebase en el ruta "Archivos/" y por ultimo la funcion nos devolvera una promesa que sera el link de descarga del archivo.
 
 ![image](https://user-images.githubusercontent.com/58036212/145500490-a05ca14e-ce60-4bdc-9b23-1c2a99831392.png)
 
 
 ## Funcionalidad de envío de ubicación
 
-Para realizar esta funcionalidad se deben usar el plugin de geolocation de capacitor, para lo cual se procede a instalar dicho plugin para posteriormente generar dentro del boton desplegable correspondiente y la funcionalidad en el .ts de la página de Chat como se muestra en la siguiente figura.
+Para realizar esta funcionalidad se deben usar el plugin de geolocation de capacitor, para lo cual se procede a instalar dicho plugin para posteriormente generar dentro del boton desplegable correspondiente y la funcionalidad en el .ts de la página de Chat.
 
 ### Archivo .ts de la página de Chat
 
-Para la funcionalidad se genera una funcion que recepte la ubicación actual del usuario y por medio del servicio de envío de mesnajes se genera un string con dicha ubicación la cual es el parametro que recibe la función que envia el mensaje a la base de datos y lo muestra en el chat.
+Para la funcionalidad se genera una función que recepte la ubicación actual del usuario y por medio del servicio de envío de mesnajes se genera un string con dicha ubicación la cual es el parametro que recibe la función que envia el mensaje a la base de datos y lo muestra en el chat.
 
 ![image](https://user-images.githubusercontent.com/66254573/148399084-8277ed13-fe38-4a4f-a3f1-9a7b5f41d456.png)
 
