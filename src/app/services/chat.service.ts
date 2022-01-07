@@ -31,6 +31,7 @@ export interface Message {
   fromName: string;
   myMsg: boolean;
   isFile: boolean;
+  isImg: boolean;
   myUsername: string;
   url: string;
 }
@@ -81,12 +82,13 @@ export class ChatService {
 
   //Se añade un mensaje a la base de datos de FireStore
   // con un mensaje, si es o no de tipo "File" y la url en caso de ser de tipo "File"
-  addChatMessage(msg, isFile, url) {
+  addChatMessage(msg, isFile, isImg, url) {
     return this.afs.collection('messages').add({
       msg,
       from: this.currentUser.uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       isFile: isFile,
+      isImg: isImg,
       url: url
     });
   }
