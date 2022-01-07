@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-<<<<<<< HEAD
-import  { CallbackID, CameraOptions, CameraPluginWeb, Capacitor } from '@capacitor/core';
+import { CallbackID, CameraOptions, CameraPluginWeb, Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/core';
 import { PhotoService } from '../../services/photo.service';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
@@ -14,11 +13,6 @@ import { NavController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { storage } from 'firebase';
 const { Camera } = Plugins;
-=======
-import  { CallbackID, Capacitor } from '@capacitor/core';
-import { Geolocation } from '@capacitor/core';
-
->>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
 
 @Component({
   selector: 'app-chat',
@@ -37,15 +31,10 @@ export class ChatPage implements OnInit {
   public archives: any = []
   photos: SafeResourceUrl[] = [] as SafeResourceUrl[];
 
-<<<<<<< HEAD
   constructor(private chatService: ChatService,
     private sanitizer: DomSanitizer,
     private router: Router,
     public navCtrl: NavController,
-=======
-  constructor(private chatService: ChatService, 
-    private router: Router,
->>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
     private zone: NgZone) { }
 
   ngOnInit() {
@@ -53,8 +42,8 @@ export class ChatPage implements OnInit {
     // console.log("mess", this.messages)
   }
 
-  sendMessage(isFile: boolean) {
-    this.chatService.addChatMessage(this.newMsg, isFile, '').then(() => {
+  sendMessage(isFile: boolean, isImg: boolean) {
+    this.chatService.addChatMessage(this.newMsg, isFile, isImg, '').then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
     });
@@ -70,10 +59,11 @@ export class ChatPage implements OnInit {
     const path = 'Archivos';
     const name = event.target.files[0].name;
     const file = event.target.files[0];
+    console.log("file", file)
     const res = await this.chatService.uploadFile(file, path, name);
     this.archives = res;
     console.log("resUploadFile", res)
-    this.chatService.addChatMessage(name, true, res).then(() => {
+    this.chatService.addChatMessage(name, true, false, res).then(() => {
       this.newMsg = '';
       this.content.scrollToBottom();
     });
@@ -96,28 +86,27 @@ export class ChatPage implements OnInit {
         longitude: data.coords.longitude,
         accuracy: data.coords.accuracy
       };
-       result = "Mi ubicacion es: " + "Lat: " + data.coords.latitude + " " + "Long: " + data.coords.longitude 
-       console.log(result)
+      result = "Mi ubicacion es: " + "Lat: " + data.coords.latitude + " " + "Long: " + data.coords.longitude
+      console.log(result)
 
-       this.chatService.addChatMessage(result, false, '').then(() => {
-            this.newMsg = '';
-            this.content.scrollToBottom();
-          });
+      this.chatService.addChatMessage(result, false, false, '').then(() => {
+        this.newMsg = '';
+        this.content.scrollToBottom();
+      });
     }).catch(err => {
       console.error(err);
-    });    
+    });
   }
 
-<<<<<<< HEAD
   random(min, max) {
     return Math.floor((Math.random() * (max - min + 1)) + min);
-}
+  }
 
   async takePicture() {
-    
+
     const options: CameraOptions = {
       quality: 50,
-      resultType: CameraResultType.DataUrl, 
+      resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
     }
 
@@ -125,16 +114,19 @@ export class ChatPage implements OnInit {
 
     var aleatorio = this.random(1, 100000);
 
-    const pictures = storage().ref('Fotos/name'+ aleatorio);
-    const url = pictures.putString(result.dataUrl, 'data_url');
-    
-    console.log("foto", url);
+    const pictures = storage().ref('Fotos/name' + aleatorio);
+    const photo = pictures.putString(result.dataUrl, 'data_url');
+
+    // console.log("foto", (await photo).task);
+
+    // this.chatService.addChatMessage('', true, false, (await photo).task.uploadUrl_).then(() => {
+    //   this.newMsg = '';
+    //   this.content.scrollToBottom();
+    // });
   }
 
-  
 
-=======
->>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
+
   // sendLocation() {  
 
   //   this.chatService.addChatMessage(position, false, '').then(() => {

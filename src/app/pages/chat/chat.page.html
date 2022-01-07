@@ -15,7 +15,12 @@
       <ion-col size="9" class="message" [offset]="message.myMsg ? 3 : 0"
         [ngClass]="{ 'my-message': message.myMsg, 'other-message': !message.myMsg }">
 
+        <ion-item *ngIf="message.isImg">
+          <ion-img class="message-img" [src]="message.url" alt=""></ion-img>
+        </ion-item>
+        <!-- <ion-item>
 
+        </ion-item> -->
         <b>{{ message.fromName }}</b><br>
         <span>{{ message.msg }}
         </span>
@@ -36,18 +41,15 @@
     </ion-fab-button>
     <ion-fab-list side="top">
 
-      <ion-fab-button color="light">
+      <ion-fab-button class="file-fab-button" color="light">
+        <ion-input (change)="uploadFile($event)" type="file" id="btn-file"></ion-input>
         <ion-icon name="document-attach-outline">
+
         </ion-icon>
-        <ion-input (change)="uploadFile($event)" type="file" id="btn-file">
-        </ion-input>
+
       </ion-fab-button>
 
-<<<<<<< HEAD
       <ion-fab-button color="light" (click)="takePicture()">
-=======
-      <ion-fab-button color="light">
->>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
         <ion-icon name="camera-outline"></ion-icon>
       </ion-fab-button>
 
@@ -68,7 +70,7 @@
           </ion-input>
         </ion-button> -->
 
-      <!-- </ion-button>
+        <!-- </ion-button>
       <ion-button size="small" (click)="getCurrentCoordinate()">
         Ubicación actual
       </ion-button>
@@ -78,13 +80,6 @@
         </div>
       </ion-button> -->
 
-<<<<<<< HEAD
-      <!--
-        <img *ngFor= "let photo of photos" [src]="photo" >
-      -->
-
-=======
->>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
       </ion-col>
       <ion-col size="8">
         <ion-textarea autoGrow="true" class="message-input" rows="1" maxLength="500" [(ngModel)]="newMsg">
@@ -92,7 +87,7 @@
       </ion-col>
       <ion-col size="2">
         <ion-button expand="block" fill="clear" color="primary" [disabled]="newMsg === ''" class="msg-btn"
-          (click)="sendMessage(false)">
+          (click)="sendMessage(false, false)">
           <ion-icon name="send" slot="icon-only"></ion-icon>
         </ion-button>
       </ion-col>

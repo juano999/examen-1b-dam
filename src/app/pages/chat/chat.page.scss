@@ -51,11 +51,23 @@
     --background: #2b7cd3;
     color: #fff;
 }
-
+.message-img {
+    max-width: 100px;
+}
 .fab-button {
     bottom: -55px;
     left: 2px;
 }
 .main-fab-button {
     transform: scale(0.7);
+}
+
+.file-fab-button {
+    ion-input {
+        opacity: 0;
+    }
+    ion-icon {
+        position: absolute;
+        right: 12px;
+    }
 }
