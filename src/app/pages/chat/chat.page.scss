@@ -7,47 +7,55 @@
     margin-top: 0px;
     --padding-start: 8px;
 }
- 
+
 .message {
     padding: 10px !important;
     border-radius: 10px !important;
     margin-bottom: 4px !important;
     white-space: pre-wrap;
 }
- 
+
 .my-message {
     background: var(--ion-color-success-tint);
     color: #fff;
 }
- 
+
 .other-message {
     background: var(--ion-color-danger-contrast);
     color: #000;
 }
- 
+
 .time {
     color: #dfdfdf;
     float: right;
     font-size: small;
 }
 
-#fondo{
-    --background: #D8DBD5;
+#fondo {
+    --background: #d8dbd5;
 }
 
-#header{
+#header {
     --background: #009688;
 }
 
-#titulos{
+#titulos {
     color: #fff;
 }
 
-#salida{
+#salida {
     --background: #fff;
 }
 
-#download{
-    --background: #2B7CD3;
+#download {
+    --background: #2b7cd3;
     color: #fff;
+}
+
+.fab-button {
+    bottom: -55px;
+    left: 2px;
+}
+.main-fab-button {
+    transform: scale(0.7);
 }

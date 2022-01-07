@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { IonContent } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
+<<<<<<< HEAD
 import  { CallbackID, CameraOptions, CameraPluginWeb, Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/core';
 import { PhotoService } from '../../services/photo.service';
@@ -13,6 +14,11 @@ import { NavController } from '@ionic/angular';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { storage } from 'firebase';
 const { Camera } = Plugins;
+=======
+import  { CallbackID, Capacitor } from '@capacitor/core';
+import { Geolocation } from '@capacitor/core';
+
+>>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
 
 @Component({
   selector: 'app-chat',
@@ -31,10 +37,15 @@ export class ChatPage implements OnInit {
   public archives: any = []
   photos: SafeResourceUrl[] = [] as SafeResourceUrl[];
 
+<<<<<<< HEAD
   constructor(private chatService: ChatService,
     private sanitizer: DomSanitizer,
     private router: Router,
     public navCtrl: NavController,
+=======
+  constructor(private chatService: ChatService, 
+    private router: Router,
+>>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
     private zone: NgZone) { }
 
   ngOnInit() {
@@ -97,6 +108,7 @@ export class ChatPage implements OnInit {
     });    
   }
 
+<<<<<<< HEAD
   random(min, max) {
     return Math.floor((Math.random() * (max - min + 1)) + min);
 }
@@ -121,6 +133,8 @@ export class ChatPage implements OnInit {
 
   
 
+=======
+>>>>>>> 2612f2d47e0f20788184aaef3917442a2718483a
   // sendLocation() {  
 
   //   this.chatService.addChatMessage(position, false, '').then(() => {
