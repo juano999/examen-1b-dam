@@ -140,6 +140,11 @@ Para la funcionalidad se genera una función que recepte la ubicación actual de
 
 ![image](https://user-images.githubusercontent.com/66254573/148624295-6fc22c71-644d-4c0f-8d42-a9f2b804a522.png)
 
+### Pantalla de permisos de ubicación
+
+![image](https://user-images.githubusercontent.com/66254573/148624430-d5e54aa7-5d46-45c1-a7a0-226ff559668a.png)
+
+
 ### Pantalla de chat
 
 ![image](https://user-images.githubusercontent.com/66254573/148624316-95af5974-31af-428d-8907-e928595128de.png)
