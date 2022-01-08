@@ -118,6 +118,32 @@ Para la funcionalidad se genera una función que recepte la ubicación actual de
 * Envío de ubicación actual
 ![image](https://user-images.githubusercontent.com/66254573/148399650-a5263937-6532-4210-ac7e-684117e2b39e.png)
 
+## Capturas de ejecución en celulares
+
+* Primer dispositivo
+
+### Pantalla de inicio de sesión 
+
+
+### Pantalla de permisos de ubicación
+
+
+### Pantalla de chat
+
+
+* Segundo dispotivo
+
+### Pantalla de inicio de sesión 
+
+
+### Pantalla de permisos de ubicación
+
+
+### Pantalla de chat
+
+
+
+
 
 
 
